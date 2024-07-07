@@ -1,4 +1,4 @@
-import { Box, Container, Heading, Stack } from '@chakra-ui/react';
+import { Box, Heading, Stack } from '@chakra-ui/react';
 import { LoginForm } from './login-form';
 
 export default function Login() {
