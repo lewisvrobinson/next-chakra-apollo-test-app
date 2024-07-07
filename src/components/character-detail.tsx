@@ -42,7 +42,7 @@ export function CharacterInfo({ characterId }: { characterId: number }) {
   return (
     <HStack alignItems={'top'} gap={8} wrap="wrap">
       <Image src={character.image} alt={character.name} borderRadius={'lg'} />
-      <dl>
+      <Box as="dl" flex={1}>
         <Text as="dt" mt={2} fontWeight="bold">
           Name
         </Text>
@@ -59,7 +59,7 @@ export function CharacterInfo({ characterId }: { characterId: number }) {
           Location
         </Text>
         <Text as={'dd'}>{character.location.name}</Text>
-      </dl>
+      </Box>
     </HStack>
   );
 }
