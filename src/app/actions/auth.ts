@@ -8,7 +8,7 @@ type FieldErrors = {
   [fieldName: string]: string;
 };
 
-export type FormState = {
+type FormState = {
   errors: FieldErrors;
 };
 
@@ -29,15 +29,17 @@ function validateLoginForm(formData: FormData) {
     }
   }
 
-  return { errors };
+  const valid = Object.keys(errors).length === 0;
+
+  return { valid, errors };
 }
 
 export async function login(_formState: FormState, formData: FormData) {
   // Validate the login form and return any errors
-  const { errors } = validateLoginForm(formData);
+  const { valid, errors } = validateLoginForm(formData);
 
   // If there are errors, return them to the client
-  if (errors) return { errors };
+  if (!valid) return { errors };
 
   // Create a new session object
   const session = {
