@@ -1,5 +1,7 @@
 'use client';
 
+import { useFormState } from 'react-dom';
+import { login } from '@/app/actions/auth';
 import {
   Box,
   Button,
@@ -11,10 +13,12 @@ import {
 } from '@chakra-ui/react';
 
 export function LoginForm() {
-  const errors = {};
+  const [{ errors }, action] = useFormState(login, { errors: {} });
+
   return (
     <Box
       as="form"
+      action={action}
       maxW="md"
       borderWidth="1px"
       borderRadius="lg"
