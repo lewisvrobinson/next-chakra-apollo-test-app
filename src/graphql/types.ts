@@ -8,7 +8,7 @@ export type Character = {
   image: string;
   status: string;
   species: string;
-  origin: CharacterOrigin;
+  location: CharacterOrigin;
 };
 
 // Used to define the pagination information
