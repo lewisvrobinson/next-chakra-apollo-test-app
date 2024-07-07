@@ -1,4 +1,5 @@
 import { Container, Heading, Stack } from '@chakra-ui/react';
+import { LoginForm } from './login-form';
 
 export default function Login() {
   return (
@@ -7,6 +8,7 @@ export default function Login() {
         <Heading as="h1" textAlign={'center'}>
           Login
         </Heading>
+        <LoginForm />
       </Stack>
     </Container>
   );
