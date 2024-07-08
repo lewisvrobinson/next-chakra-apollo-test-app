@@ -1,6 +1,6 @@
 'use client';
 
-import { Box, Heading, Stack, Text } from '@chakra-ui/react';
+import { Avatar, Box, Heading, Stack, Text } from '@chakra-ui/react';
 import { UpdateUserForm } from './update-user-form';
 import { useAuth } from '@/hooks/auth';
 
@@ -22,6 +22,7 @@ export default function UserDetails() {
       minH="100svh"
     >
       <Stack spacing={4} alignItems={'center'}>
+        <Avatar size={'xl'} name={user.username} />
         <Heading textAlign={'center'}>Edit Profile</Heading>
         <UpdateUserForm user={user} />
       </Stack>
