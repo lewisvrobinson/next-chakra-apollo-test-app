@@ -9,7 +9,7 @@ import {
   MenuButton,
   MenuItem,
   MenuList,
-  Text,
+  Link,
 } from '@chakra-ui/react';
 import NextLink from 'next/link';
 
@@ -24,7 +24,7 @@ export function Header() {
         marginX="auto"
         px={8}
       >
-        <Text fontSize={'2xl'}>📺</Text>
+        <Link as={NextLink} href={'/'}fontSize={'2xl'}>📺</Link>
         <Flex alignItems={'center'}>
           <Menu>
             <MenuButton
