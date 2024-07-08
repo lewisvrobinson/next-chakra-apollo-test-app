@@ -16,7 +16,7 @@ function fieldIsValid(value: unknown) {
   return Boolean(value && typeof value === 'string' && value.trim().length > 0);
 }
 
-function validateLoginForm(formData: FormData) {
+function validateUserDetails(formData: FormData) {
   const errors = {} as FieldErrors;
   const fields = ['username', 'title'];
 
@@ -36,7 +36,7 @@ function validateLoginForm(formData: FormData) {
 
 export async function login(_formState: FormState, formData: FormData) {
   // Validate the login form and return any errors
-  const { valid, errors } = validateLoginForm(formData);
+  const { valid, errors } = validateUserDetails(formData);
 
   // If there are errors, return them to the client
   if (!valid) return { errors };
@@ -60,4 +60,55 @@ export async function login(_formState: FormState, formData: FormData) {
   });
 
   redirect('/');
+}
+
+export async function logout() {
+  // Remove the session cookie
+  cookies().set({
+    name: SESSION_COOKIE_NAME,
+    value: '',
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 0,
+    expires: new Date(0),
+  });
+}
+
+export async function updateUser(_formState: FormState, formData: FormData) {
+  // Validate the form data
+  const { valid, errors } = validateUserDetails(formData);
+
+  // If there are errors, return them to the client
+  if (!valid) return { errors };
+
+  // Create a new session object
+  const session = {
+    username: formData.get('username'),
+    title: formData.get('title'),
+  };
+
+  // Set the session cookie
+  cookies().set({
+    name: SESSION_COOKIE_NAME,
+    value: JSON.stringify(session),
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 60 * 60 * 24 * 365 * 1000,
+    expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
+  });
+
+  return { status: 'success', errors: null };
+}
+
+export async function getUser() {
+  // Get the session cookie
+  const sessionCookie = cookies().get(SESSION_COOKIE_NAME)?.value;
+
+  // If the session cookie is not set, return null
+  if (!sessionCookie) return null;
+
+  // Parse the session cookie
+  const session = JSON.parse(sessionCookie);
+
+  return session;
 }
