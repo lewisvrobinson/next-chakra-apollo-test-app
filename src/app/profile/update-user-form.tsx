@@ -40,7 +40,7 @@ export function UpdateUserForm({ user }: { user: User }) {
           )}
         </FormControl>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit">Update</Button>
       </Stack>
     </Box>
   );
