@@ -24,6 +24,7 @@ export function LoginForm() {
       borderRadius="lg"
       p="6"
       w="full"
+      mx="auto"
     >
       <Stack spacing="4" justifyContent="center">
         <FormControl id="username" isInvalid={Boolean(errors?.username)}>
