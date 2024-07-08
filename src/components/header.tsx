@@ -11,6 +11,7 @@ import {
   MenuList,
   Text,
 } from '@chakra-ui/react';
+import NextLink from 'next/link';
 
 export function Header() {
   return (
@@ -36,8 +37,7 @@ export function Header() {
               <Avatar size={'xs'} />
             </MenuButton>
             <MenuList>
-              <MenuItem>Settings</MenuItem>
-              {/* <MenuDivider /> */}
+              <MenuItem as={NextLink} href="/profile">Edit profile</MenuItem>
               <MenuItem>Logout 👋</MenuItem>
             </MenuList>
           </Menu>
