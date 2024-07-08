@@ -97,7 +97,7 @@ export async function updateUser(_formState: FormState, formData: FormData) {
     expires: new Date(Date.now() + 60 * 60 * 24 * 365 * 1000),
   });
 
-  return { status: 'success', errors: null };
+  return { errors: {} };
 }
 
 export async function getUser() {
