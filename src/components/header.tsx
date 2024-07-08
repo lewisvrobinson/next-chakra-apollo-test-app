@@ -1,5 +1,6 @@
 'use client';
 
+import { useAuth } from '@/hooks/auth';
 import {
   Avatar,
   Box,
@@ -14,6 +15,7 @@ import {
 import NextLink from 'next/link';
 
 export function Header() {
+  const user = useAuth();
   return (
     <Box as="header" borderBottomWidth={1} marginBottom={8}>
       <Flex
@@ -34,7 +36,7 @@ export function Header() {
               cursor={'pointer'}
               minW={0}
             >
-              <Avatar size={'xs'} />
+              <Avatar size={'xs'} name={user?.username} />
             </MenuButton>
             <MenuList>
               <MenuItem as={NextLink} href="/profile">Edit profile</MenuItem>
